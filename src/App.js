@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles/App.scss";
+import Console from "./components/Console";
+import {useEffect} from "react";
 
 function App() {
+  let ws=new WebSocket(`ws://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/${process.env.REACT_APP_PW}`);
+  useEffect(()=>{
+    ws.onopen=()=>{
+        console.log("connection established"); 
+    }
+    ws.onclose=(e)=>{
+    e.wasClean ? console.log(`connection closed cleanly`) : console.log(`connection died`);
+}
+});
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Console ws={ws}/>
     </div>
   );
 }
