@@ -5,8 +5,8 @@
   flex-direction: column;
   background-color: $background;
   color:white;
-  width: 100vw;
-  height: 100vh;
+  height: 90%; //TODO: fill in remaining space correctly
+  
   .server_messages{
     display:flex;
     flex-direction: column;
@@ -40,17 +40,6 @@
     button{
       width:80px;
       background-color:$primary;
-    }
-  }
-  .status{
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left:10px;
-
-    .info{
-    display:flex;
-    align-items: center;
     }
   }
   .clear{

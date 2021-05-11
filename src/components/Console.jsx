@@ -2,14 +2,12 @@ import React,{useState} from 'react'
 import "../styles/Console.scss";
 import {TextField,Button,Tooltip} from "@material-ui/core";
 import CodeIcon from '@material-ui/icons/Code';
-import OnlineIcon from '@material-ui/icons/FiberManualRecord';
 import ClearIcon from '@material-ui/icons/Clear';
 
 function Console({ws}) {
     const [messages,setMessages]=useState([]);
     const [currentInput,setCurrentInput]=useState("");
     const [commandEnabled,setCommandEnabled]=useState(false);
-    const wsConnected=true;
     ws.onmessage=(e)=>{
     const data=JSON.parse(e.data);
     if(data) setMessages(prevState=>([...prevState,data]));
@@ -49,15 +47,6 @@ function Console({ws}) {
         inputProps={{style:{color:"white"}}} onChange={onInputChange} value={currentInput} />
         <Button variant="contained" color="primary" onClick={()=>{sendToServer();}}>Send</Button>
         </div>
-        <span className="status">
-        <span className="info">
-        <span>Server status</span>
-        <Tooltip title={wsConnected ? "Online" : "Offline"} placement="right">
-        <OnlineIcon style={{color: wsConnected ? "lightgreen" : "red"}}/>
-        </Tooltip>
-        </span>
-            
-        </span>
         </div>
     )
 }
