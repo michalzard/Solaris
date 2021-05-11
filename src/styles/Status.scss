@@ -1,0 +1,13 @@
+@import "./Theme";
+.status{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left:10px;
+    background-color: $background;
+    color:white;
+    .info{
+    display:flex;
+    align-items: center;
+    }
+}
