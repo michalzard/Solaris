@@ -6,12 +6,12 @@ import {
   Route,
 } from "react-router-dom";
 
-import Console from "./components/Console";
 import Status from "./components/Status";
 import Navbar from "./components/Navbar";
+import Console from "./components/Console";
 import ServerInfo from "./components/ServerInfo";
 import ServerConfig from "./components/ServerConfig";
-import ServerStats from "./components/ServerStats";
+import ServerStats from "./components/Statistics/ServerStats";
 
 function App() {
   let ws=new WebSocket(`ws://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/${process.env.REACT_APP_PW}`);
