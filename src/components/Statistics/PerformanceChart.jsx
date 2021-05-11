@@ -6,7 +6,6 @@ Chart.defaults.plugins.legend.display=false;
 
 function PerformanceChart() {
     const highlightRed="#f50057";
-    const bruh=null;
     return (
         <div className="performanceChart">
         <div className="chart_info">
