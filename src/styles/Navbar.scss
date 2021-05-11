@@ -1,0 +1,10 @@
+@import "./Theme";
+.navbar{
+    background-color: $background;
+    display: flex;
+    padding:10px;
+    a{
+        margin-right:20px;
+        color:white;
+    }
+}
