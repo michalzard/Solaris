@@ -10,22 +10,33 @@ function Console({ws}) {
     const [commandEnabled,setCommandEnabled]=useState(false);
     ws.onmessage=(e)=>{
     const data=JSON.parse(e.data);
-    if(data) setMessages(prevState=>([...prevState,data]));
+    console.log(data);
+    if(data)setMessages(prevState=>([...prevState,data]));
     }
     const onInputChange=(e)=>{
         setCurrentInput(e.target.value);
     }
     const sendToServer=()=>{
+    if(currentInput.length>0){
     if(commandEnabled){
     ws.send(JSON.stringify({Message:currentInput.trim(), Name:"Console"}));
     }else ws.send(JSON.stringify({Message:`say ${currentInput}`, Name:"Console"}));
     setCurrentInput("");
+    }
     }
     const changeInputMode=()=>{
     setCommandEnabled(!commandEnabled);
     }
     const clearConsole=()=>{
         setMessages([]);
+    }
+    const onEnterSubmit=(e)=>{
+        if(e.key==="Enter") sendToServer();
+        if(e.key==="Tab") {
+        const textfield=document.querySelector("input");
+        changeInputMode();
+        setTimeout(()=>{textfield.focus();},500)
+    }
     }
 
     return (
@@ -44,7 +55,7 @@ function Console({ws}) {
         <CodeIcon className="command" style={{margin:"10px",color:commandEnabled ? "lightgreen" : null}} onClick={changeInputMode}/>
         </Tooltip>
         <TextField fullWidth placeholder={commandEnabled ? "Send command to server" : "Send message to server"} 
-        inputProps={{style:{color:"white"}}} onChange={onInputChange} value={currentInput} />
+        inputProps={{style:{color:"white"}}} onChange={onInputChange} onKeyDown={(e)=>{onEnterSubmit(e)}} value={currentInput}/>
         <Button variant="contained" color="primary" onClick={()=>{sendToServer();}}>Send</Button>
         </div>
         </div>
