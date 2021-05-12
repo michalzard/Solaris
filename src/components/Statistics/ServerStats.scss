@@ -3,7 +3,20 @@
 
 .server-stats{
     display:flex;
-    flex-direction: column;
     height: 100%;
-    background-color: gray;
+    background-color:$stats_background;
+    
+    .content{
+        display:flex;
+        flex-direction: column;
+        width:100%;
+        height: 100%;
+        padding:20px;
+    }
+}
+
+.leftsidebar{
+    display:flex;
+    flex-direction: column;
+    padding:10px;
 }
