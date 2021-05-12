@@ -1,23 +1,22 @@
 import React from 'react'
 import "./StatCard.scss";
-import AcUnitIcon from '@material-ui/icons/AcUnit';
-import ReplayIcon from '@material-ui/icons/Replay';
+import AddIcon from '@material-ui/icons/Add';
 
-function StatCard() {
+function StatCard({icon,actionIcon,title,value,desc}) {
     return (
         <div className="stat-card">
-            
+   
         <div className="header">
-        <span className="icon"><AcUnitIcon fontSize={"large"}/></span>
+        <span className="icon">{icon ? icon : <AddIcon fontSize={"large"}/>}</span>
         <div className="info"> 
-        <span className="title">Number</span>
-        <span className="value">50</span>
+        <span className="title">{title ? title : "Title"}</span>
+        <span className="value">{value ? value : "Value"}</span>
         </div>
         </div>
         
         <div className="action">
-        <span className="icon"><ReplayIcon fontSize={"small"}/></span>
-        <span className="name">Update now</span>
+        <span className="icon">{actionIcon ? actionIcon : <AddIcon />}</span>
+        <span className="name">{desc ? desc : "Description"}</span>
         </div>
         </div>
     )
