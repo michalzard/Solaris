@@ -1,18 +1,32 @@
 @import "../../styles/Theme";
 
 .performanceChart {
-  background-color: $perf_background;
+  background-color: $background;
   color: white;
-
+  padding:10px;
+  border-radius: 5px;
+  max-height: 400px;
+  .graph{
+    max-height: 400px;
+  }
   .chart_info {
     display: flex;
     justify-content: space-between;
 
-    .title {
-      font-size: 25px;
-      font-weight: bold;
-      margin-left: 10px;
-      padding:10px;
+    .titles {
+    display:flex;
+    flex-direction: column;
+    margin-left: 10px;
+    padding: 10px;
+    .subtitle{
+    color:gray;
+    font-size: small;
+    margin:10px;
+    margin-left:0px;
+    }
+    .title{
+    font-size: large;
+    }
     }
 
     .buttons {
