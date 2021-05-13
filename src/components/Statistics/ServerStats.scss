@@ -1,22 +1,37 @@
 @import "../../styles/Theme";
 
 
-.server-stats{
-    display:flex;
+.server-stats {
+  display: flex;
+  height: 100%;
+  background-color: $stats_background;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     height: 100%;
-    background-color:$stats_background;
-    
-    .content{
-        display:flex;
-        flex-direction: column;
-        width:100%;
-        height: 100%;
-        padding:20px;
+    padding: 20px;
+  }
+
+  .m-top {
+    margin-top: 10px;
+  }
+
+  .rotateAnimation {
+    .action {
+      .icon {
+        animation:spin 1s;
+      }
     }
+  }
 }
 
-.leftsidebar{
-    display:flex;
-    flex-direction: column;
-    padding:10px;
+.leftsidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  min-width: 100px;
 }
+
+@keyframes spin { 50% {transform: rotate(90deg);}}
