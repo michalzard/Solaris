@@ -2,9 +2,9 @@ import React from 'react'
 import "./StatCard.scss";
 import AddIcon from '@material-ui/icons/Add';
 
-function StatCard({icon,actionIcon,title,value,desc}) {
+function StatCard({icon,actionIcon,title,value,desc,onClickCallback,className,id}) {
     return (
-        <div className="stat-card">
+        <div className={`stat-card ${className ? className : null}`} id={`${id ? id : null}`}>
    
         <div className="header">
         <span className="icon">{icon ? icon : <AddIcon fontSize={"large"}/>}</span>
@@ -15,7 +15,8 @@ function StatCard({icon,actionIcon,title,value,desc}) {
         </div>
         
         <div className="action">
-        <span className="icon">{actionIcon ? actionIcon : <AddIcon />}</span>
+        <span className="icon" onClick={onClickCallback ? onClickCallback : null}>
+        {actionIcon ? actionIcon : <AddIcon />}</span>
         <span className="name">{desc ? desc : "Description"}</span>
         </div>
         </div>
