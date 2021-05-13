@@ -8,9 +8,9 @@ import {
 
 import Status from "./components/Status";
 import Navbar from "./components/Navbar";
-import Console from "./components/Console";
-import ServerInfo from "./components/ServerInfo";
-import ServerConfig from "./components/ServerConfig";
+import Console from "./components/Console/Console";
+import ServerInfo from "./components/Info/ServerInfo";
+import ServerConfig from "./components/Config/ServerConfig";
 import ServerStats from "./components/Statistics/ServerStats";
 
 function App() {
