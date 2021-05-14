@@ -57,7 +57,7 @@ function Console({ws}) {
 
     return (
         <div className="console">
-        <span className="clear"> <span style={{paddingLeft:"5px",color:"#BB86FC"}}>{title}</span>
+        <span className="clear"> <div style={{paddingLeft:"5px",color:"#BB86FC"}}>{title}</div>
         <span onClick={clearConsole}>
         <Tooltip title="Clear the console" placement="left-end">
         <ClearIcon/>

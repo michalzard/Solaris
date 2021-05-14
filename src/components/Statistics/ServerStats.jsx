@@ -8,12 +8,15 @@ import PersonIcon from '@material-ui/icons/Person';
 import CachedIcon from '@material-ui/icons/Cached';
 
 function ServerStats({ws}) {
-    const [concurrentPlayers,setConcurrentPlayers]=useState(0);
+    const [concurrentPlayers,setConcurrentPlayers]=useState("");
+    const [display,setDisplay]=useState("");
     ws.onmessage=(e)=>{
         const data=JSON.parse(e.data);
         if(data.Message.includes("users")){
-        const connectedPlayers=data.Message.split("\n")[1].replace("users","");
-        setConcurrentPlayers(connectedPlayers);
+        console.log(data.Message);
+        const connectedPlayers=data.Message.split("\n")[2].replace("users","") ;
+        if(connectedPlayers!=="")setConcurrentPlayers(connectedPlayers);
+        else setConcurrentPlayers("0");
         }else return;
     }
     useEffect(()=>{
