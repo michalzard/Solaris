@@ -4,6 +4,8 @@ import {Chart, Line} from "react-chartjs-2";
 import {Button,ButtonGroup} from "@material-ui/core";
 Chart.defaults.plugins.legend.display=false;
 
+
+// TODO:Performance chart needs to be connected to database
 function PerformanceChart({subtitle,title,color,fill,data}) {
     const highlightRed="#f50057";
     const [sortBy,setSortBy]=useState("Monthly");
