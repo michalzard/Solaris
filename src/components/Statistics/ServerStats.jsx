@@ -16,20 +16,11 @@ function ServerStats({ws}) {
         if(data.Message.includes("users")){
         const connectedPlayers=data.Message.split("\n")[2].replace("users","");
         const playerData=data.Message.split("\n")[1].split("/")[0].split(':');
-           
-        if(!concurrentPlayerData.includes(playerData[0])){
-            setConcurrentPlayerData(prevState=>([...prevState,{id:playerData[0],displayName:playerData[1].split('"')[1]}]));        
-        }
-        if(connectedPlayers!=="")setConcurrentPlayers(connectedPlayers);
+        if(playerData[1]) setConcurrentPlayerData(prevState=>([...prevState,{id:playerData[0],displayName:playerData[1].split('"')[1]}]));
+        if(connectedPlayers!=="") setConcurrentPlayers(connectedPlayers);
         else setConcurrentPlayers("0");
         }else return;
-    }
-    useEffect(()=>{
-        setTimeout(()=>{
-        if(ws)ws.send(JSON.stringify({Message:"users", Name:"Console"}));
-        },200);    
-    },[ws]);
-    
+    } 
 
     return (
         <div className="server-stats">
@@ -79,7 +70,7 @@ function PlayersInfo({ws,data}){
     Message:"users",
     }))
     },200);
-    },[ws]);
+    },[]);
   
     return(
         <>
