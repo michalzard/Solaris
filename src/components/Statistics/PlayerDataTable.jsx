@@ -6,13 +6,13 @@ import {TableBody,Table,TableCell,TableContainer,TableHead,TableRow,Paper} from 
 function PlayerDataTable({data}) {
     //{id:13212321312,displayName:deeeznutsmyguy}
     return (
-         <TableContainer component={Paper}>
+         <TableContainer component={Paper} className="player-dataTable">
       <Table className="player-dataTable" aria-label="simple table">
-      <TableHead>
+      <TableHead className="header">
           <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Actions</TableCell>
+            <TableCell className="datacell"><span>ID</span></TableCell>
+            <TableCell className="datacell"><span>Name</span></TableCell>
+            <TableCell className="datacell"><span>Actions</span></TableCell>
 
           </TableRow>
         </TableHead>
@@ -20,12 +20,12 @@ function PlayerDataTable({data}) {
         data.map((user,i)=>{
         return  <TableBody key={i}>
         <TableRow>
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row" className="datacell">
         <a href={`https://steamcommunity.com/profiles/${user.id}/`} rel="noreferrer"
         target="_blank">{user.id}</a>
         </TableCell>
-        <TableCell>{user.displayName}</TableCell>
-        <TableCell>some icons</TableCell>
+        <TableCell className="datacell"><span>{user.displayName}</span></TableCell>
+        <TableCell className="datacell" ><span>some icons</span></TableCell>
         </TableRow>
         </TableBody>
         })

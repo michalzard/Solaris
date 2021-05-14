@@ -1,5 +1,11 @@
 @import "../../styles/Theme.scss";
 
-// .player-dataTable{
+.player-dataTable{
+background-color: $background;
 
-// }
+}
+.datacell{
+    a{color:$primary;text-decoration: none;}
+    //style data table
+    span{color:white;}
+}
