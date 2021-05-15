@@ -2,10 +2,18 @@
 
 .player-dataTable{
 background-color: $background;
-
+border-radius: 5px;
 }
 .datacell{
     a{color:$primary;text-decoration: none;}
     //style data table
     span{color:white;}
+    
+}
+.m-left{
+margin-left: 10px;
+}
+.tableIcon{
+    color:white;
+    cursor: pointer;
 }

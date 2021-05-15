@@ -13,6 +13,7 @@ function ServerStats({ws}) {
     const [concurrentPlayerData,setConcurrentPlayerData]=useState([]);
     ws.onmessage=(e)=>{
         const data=JSON.parse(e.data);
+        console.log(data);
         if(data.Message.includes("users")){
         const connectedPlayers=data.Message.split("\n")[2].replace("users","");
         const playerData=data.Message.split("\n")[1].split("/")[0].split(':');
@@ -27,7 +28,7 @@ function ServerStats({ws}) {
             <LeftSideBar setDisplay={setDisplay}/>
             <div className="content">
            { display==="Server" ? <ServerInfo ws={ws} concurrentPlayers={concurrentPlayers}/> : null }
-           { display==="Players" ? <PlayersInfo ws={ws} data={concurrentPlayerData}/> : null }
+           { display==="Players" ? <PlayersInfo ws={ws} data={concurrentPlayerData} setData={setConcurrentPlayerData}/> : null }
            </div>
         </div>
     )
@@ -63,19 +64,20 @@ function ServerInfo({ws,concurrentPlayers}){
     )
 }
 
-function PlayersInfo({ws,data}){
+function PlayersInfo({ws,data,setData}){
     useEffect(()=>{
     setTimeout(()=>{
     ws.send(JSON.stringify({
     Message:"users",
     }))
     },200);
-    },[]);
+    return setData([]);
+    },[ws,setData]);
   
     return(
         <>
         <div className="playerinfo">
-        <PlayerDataTable data={data}/>
+        <PlayerDataTable ws={ws} setData={setData} data={data}/>
         </div>
         </>
     )
