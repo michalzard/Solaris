@@ -4,17 +4,22 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 
 import Status from "./components/Status";
 import Navbar from "./components/Navbar";
+import Welcome from "./components/Welcome";
+
 import Console from "./components/Console/Console";
 import ServerInfo from "./components/Info/ServerInfo";
 import ServerConfig from "./components/Config/ServerConfig";
 import ServerStats from "./components/Statistics/ServerStats";
 
 function App() {
-  let ws=new WebSocket(`ws://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/${process.env.REACT_APP_PW}`);
+  const d=localStorage.getItem("server_data");
+  const connection=JSON.parse(d);
+  let ws=new WebSocket(`ws://${connection.ip}:${connection.port}/${connection.pw}`);
   useEffect(()=>{
     ws.onopen=()=>{
         console.log("connection established"); 
@@ -26,22 +31,33 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Navbar/>
+      {ws.readyState===WebSocket.CLOSING || ws.readyState===WebSocket.CLOSED ? <Redirect to="/"/> : null}
       <Switch>
-     <Route path="/console">
-     <Console ws={ws}/>
+      <Route path="/console">
+      <Navbar/>  
+      <Console ws={ws}/>
+      <Status/>
      </Route>
      <Route path="/stats">
+     <Navbar/>
      <ServerStats ws={ws}/>
+     <Status/>
      </Route>
      <Route path="/info">
+     <Navbar/>
      <ServerInfo ws={ws}/>
+     <Status/>
      </Route>
      <Route path="/config">
+     <Status/>
+     <Navbar/>
      <ServerConfig ws={ws}/>
+     <Status/>
+     </Route>
+     <Route path="/">
+     <Welcome/>
      </Route>
      </Switch>
-     <Status/>
      </Router>
     </div>
   );
