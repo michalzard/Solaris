@@ -1,0 +1,31 @@
+@import "./Theme";
+.welcome{
+    display:flex;
+    height: 100%;
+    background-color: $stats_background;
+    color:white;
+    justify-content: center;
+    align-items: center;
+    .login{
+        background-color: $background;
+        border-radius: 10px;
+        padding:20px;
+        width: 500px;
+        height: 250px;
+        span{
+            display: flex;
+            align-items: center;
+            svg{
+                margin-left: 10px;
+            }
+        }
+        .input{
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            a{
+                margin-top:20px;
+            }
+        }
+    }
+}
